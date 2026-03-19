@@ -313,6 +313,10 @@ if __name__ == "__main__":
     print_status()
     setup_schedule()
 
+    if os.getenv("POST_NOW", "").lower() == "true":
+        print("POST_NOW=true — מפרסם פוסט ראשון עכשיו...")
+        post_next()
+
     print("המערכת פועלת. לחץ Ctrl+C לעצירה.\n")
 
     while True:
