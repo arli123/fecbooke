@@ -51,9 +51,19 @@ LAWYER_INFO = {
 
 # ─── Google Docs: קריאה ───────────────────────────────────────────────────────
 def get_google_service():
-    creds = service_account.Credentials.from_service_account_file(
-        CREDENTIALS_FILE, scopes=SCOPES
-    )
+    credentials_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+    if credentials_json:
+        import json as _json, base64
+        raw = credentials_json.strip()
+        if not raw.startswith("{"):
+            raw = base64.b64decode(raw).decode("utf-8")
+        creds = service_account.Credentials.from_service_account_info(
+            _json.loads(raw), scopes=SCOPES
+        )
+    else:
+        creds = service_account.Credentials.from_service_account_file(
+            CREDENTIALS_FILE, scopes=SCOPES
+        )
     return build("docs", "v1", credentials=creds)
 
 
