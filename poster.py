@@ -31,7 +31,7 @@ LOG_FILE = "posted_log.json"
 FB_PAGE_ID = os.getenv("FACEBOOK_PAGE_ID")
 FB_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN")
 DOC_ID = os.getenv("GOOGLE_DOC_ID")
-POSTS_PER_DAY = int(os.getenv("POSTS_PER_DAY", 2))
+POSTS_PER_DAY = int(os.getenv("POSTS_PER_DAY", 1))
 BATCH_SIZE = int(os.getenv("BATCH_SIZE", 60))
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
@@ -44,7 +44,7 @@ LAWYER_INFO = {
     "topics": [
         "גירושין", "הסכמי ממון", "מזונות ילדים", "מזונות אישה",
         "משמורת ילדים", "הסדרי שהות", "צוואות", "ירושות",
-        "ייפוי כוח מתמשך", "גישור משפחתי", "חדלות פרעון",
+        "ייפוי כוח מתמשך", "גישור משפחתי",
     ]
 }
 
@@ -242,7 +242,7 @@ def post_next():
 # ─── תזמון ───────────────────────────────────────────────────────────────────
 def setup_schedule():
     times = {
-        1: ["09:00"],
+        1: ["16:00"],
         2: ["09:00", "18:00"],
         3: ["09:00", "13:00", "19:00"],
         4: ["08:00", "12:00", "16:00", "20:00"],
